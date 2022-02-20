@@ -1,17 +1,13 @@
-<template>
-  <div class="login-page">
-    <div class="login-box-container">
-      <LoginForm />
-      <div class="login-bg-wrapper">
-        <div class="login-bg-image"></div>
-        <div class="product-exhibit">
-          <img class="product-icon" :src="require('@/assets/logo-icon.svg')"/>
-          <div class="product-name">LIAO LIAO</div>
-        </div>
-        <div class="login-bg-description">Because every second matters</div>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+.login-page
+  .login-box-container
+    LoginForm
+    .login-bg-wrapper
+      .login-bg-image
+      .product-exhibit
+        img.product-icon(:src="require('@/assets/logo-icon.svg')")
+        .product-name LIAO LIAO
+      .login-bg-description Because every second matters
 </template>
 
 <script>
@@ -37,7 +33,7 @@ export default {
 }
 
 .login-bg-wrapper {
-  @apply relative w-[75%] h-full rounded-r-[20px] bg-light-primary;
+  @apply hidden xl:block relative w-[75%] h-full rounded-r-[20px] bg-light-primary;
 }
 
 .login-bg-image {

@@ -1,30 +1,59 @@
-<template>
-  <div class="login-form">
-    <div class="greeting-msg">Login</div>
-    <div class="login-hint-msg">You need to provide an access details below to enter the manage system</div>
-    <div class="login-input-container">
-      <div class="account-input-wrapper">
-        <img class="input-icon" :src="require('@/assets/account-icon.svg')" alt="">
-        <input class="account-input" placeholder="Username">
-      </div>
-      <div class="password-input-wrapper">
-        <img class="input-icon" :src="require('@/assets/password-icon.svg')" alt="">
-        <input type="password" class="password-input" placeholder="Password">
-      </div>
-    </div>
-    <div class="sign-in-btn">Sign in</div>
-  </div>
-</template>
+<template lang="pug">
+.login-form
+  .greeting-msg Login
+  .login-hint-msg You need to provide an access details below to enter the manage system
+  .login-input-container
+    .account-input-wrapper
+      img.input-icon(:src="require('@/assets/account-icon.svg')" alt="")
+      input.account-input(
+        name="account"
+        placeholder="Username"
+        v-model="account"
+      )
+    .password-input-wrapper
+      img.input-icon(:src="require('@/assets/password-icon.svg')" alt="")
+      input.password-input(
+        @keyup.enter="loginHandler"
+        type="password"
+        placeholder="Password"
+        autocomplete="on"
+        v-model="password"
+        name="password"
+      )
+  .sign-in-btn(
+    @click="loginHandler"
+  ) Sign in
+  </template>
 
 <script>
+import loginAuth from '@/services/authServices'
+
 export default {
-  name: 'LoginForm'
+  name: 'LoginForm',
+
+  data () {
+    return {
+      account: '',
+      password: ''
+    }
+  },
+
+  methods: {
+    loginHandler () {
+      const { account, password } = this
+
+      loginAuth({ body: { account, password } })
+        .then(_ => {
+          this.$router.push({ name: 'manage' })
+        })
+    }
+  }
 }
 </script>
 
 <style scoped>
 .login-form {
-  @apply flex flex-col justify-center w-1/2 h-full px-[8%] bg-white rounded-l-[20px];
+  @apply flex flex-col justify-center w-full xl:w-1/2 h-full px-[8%] bg-white rounded-[20px] xl:rounded-r-none;
 }
 
 .greeting-msg {
