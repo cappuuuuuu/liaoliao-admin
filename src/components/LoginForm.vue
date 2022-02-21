@@ -51,7 +51,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .login-form {
   @apply flex flex-col justify-center w-full xl:w-1/2 h-full px-[8%] bg-white rounded-[20px] xl:rounded-r-none;
 }
@@ -71,6 +71,16 @@ export default {
 .account-input,
 .password-input {
   @apply w-full py-[14px] outline-none text-gray-500 bg-transparent;
+
+  &:-webkit-autofill {
+    transition: .15s ease;
+    -webkit-box-shadow: 0 0 0px 1000px rgb(246,246,246) inset;
+  }
+
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0px 1000px rgb(236, 237, 240) inset;
+  }
 }
 
 .account-input-wrapper,
