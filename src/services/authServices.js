@@ -1,9 +1,9 @@
 import xhr from './xhr'
 
-export default function loginAuth ({ body }) {
+export function loginAuth ({ body }) {
   return xhr({
     method: 'post',
-    url: 'admin/auth',
+    url: 'login',
     data: body
   })
 }
