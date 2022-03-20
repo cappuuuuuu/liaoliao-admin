@@ -1,5 +1,8 @@
 import { Notification } from 'element-ui'
-const axios = require('axios')
+import router from '@/router'
+import axios from 'axios'
+import { timeout } from '@/utils'
+import { constants } from '@/constants'
 const { VUE_APP_SERVER_ORIGIN: SERVER_ORIGIN } = process.env
 
 export default function xhr ({
@@ -12,20 +15,33 @@ export default function xhr ({
     method,
     url: SERVER_ORIGIN + url,
     data,
-    params
+    params,
+    withCredentials: true
   }
 
-  const response = axios(options)
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
-    .catch(err => {
-      Notification.error({
-        message: err.response.data?.message ?? 'Unknown Error'
+  return new Promise((resolve, reject) => {
+    axios(options)
+      .then(res => {
+        resolve(res.data)
       })
+      .catch(async err => {
+        const errorMessage = err.response.data?.message ?? constants.apiErrorMessage.default.UNKNOWN
 
-      return Promise.reject(err)
-    })
+        // Because token is expired, router will redirect to login page
+        if (errorMessage === constants.apiErrorMessage.auth.TOKEN_EXPIRED) {
+          Notification.error({
+            message: constants.notification.error.RELOGIN
+          })
 
-  return response
+          await timeout(1000)
+          router.push('/')
+        } else {
+          Notification.error({
+            message: errorMessage
+          })
+        }
+
+        reject(err)
+      })
+  })
 }
