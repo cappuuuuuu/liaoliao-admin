@@ -8,7 +8,7 @@
       input.account-input(
         name="account"
         placeholder="Username"
-        v-model="account"
+        v-model="personalInfo.account"
       )
     .password-input-wrapper
       img.input-icon(:src="require('@/assets/password-icon.svg')" alt="")
@@ -17,35 +17,23 @@
         type="password"
         placeholder="Password"
         autocomplete="on"
-        v-model="password"
+        v-model="personalInfo.password"
         name="password"
       )
   .sign-in-btn(
-    @click="loginHandler"
+    @click="$emit('login-handler', personalInfo)"
   ) Sign in
   </template>
 
 <script>
-import loginAuth from '@/services/authServices'
-
 export default {
   name: 'LoginForm',
-
   data () {
     return {
-      account: '',
-      password: ''
-    }
-  },
-
-  methods: {
-    loginHandler () {
-      const { account, password } = this
-
-      loginAuth({ body: { account, password } })
-        .then(_ => {
-          this.$router.push({ name: 'manage' })
-        })
+      personalInfo: {
+        account: '',
+        password: ''
+      }
     }
   }
 }

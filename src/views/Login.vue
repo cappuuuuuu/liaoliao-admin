@@ -1,7 +1,7 @@
 <template lang="pug">
 .login-page
   .login-box-container
-    LoginForm
+    LoginForm(@login-handler="loginHandler")
     .login-bg-wrapper
       .login-bg-image
       .product-exhibit
@@ -11,12 +11,26 @@
 </template>
 
 <script>
+import { loginAuth } from '@/services/authServices'
 import LoginForm from '@/components/LoginForm.vue'
 
 export default {
   name: 'Login',
   components: {
     LoginForm
+  },
+  methods: {
+    loginHandler (personalInfo) {
+      const { account, password } = personalInfo
+      const body = {
+        account,
+        password
+      }
+
+      loginAuth({ body })
+        .then(() => this.$router.push({ name: 'manage' }))
+        .catch(err => console.log(err))
+    }
   }
 }
 </script>
