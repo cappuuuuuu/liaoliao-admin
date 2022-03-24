@@ -2,7 +2,7 @@ import { Notification } from 'element-ui'
 import router from '@/router'
 import axios from 'axios'
 import { timeout } from '@/utils'
-import { constants } from '@/constants'
+import CONSTANT_MESSAGE from '@/constants/message'
 const { VUE_APP_SERVER_ORIGIN: SERVER_ORIGIN } = process.env
 
 export default function xhr ({
@@ -25,12 +25,13 @@ export default function xhr ({
         resolve(res.data)
       })
       .catch(async err => {
-        const errorMessage = err.response.data?.message ?? constants.apiErrorMessage.default.UNKNOWN
+        const errorMessage = err.response.data?.message ?? CONSTANT_MESSAGE.api.error.UNKNOWN
+        const isTokenExpired = errorMessage === CONSTANT_MESSAGE.api.error.TOKEN_EXPIRED
 
         // Because token is expired, router will redirect to login page
-        if (errorMessage === constants.apiErrorMessage.auth.TOKEN_EXPIRED) {
+        if (isTokenExpired) {
           Notification.error({
-            message: constants.notification.error.RELOGIN
+            message: CONSTANT_MESSAGE.notification.error.RELOGIN
           })
 
           await timeout(1000)
