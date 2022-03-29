@@ -2,19 +2,29 @@ import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
-import store from './store'
+// ElementUI
 import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+// Vee-Validate
 import { ValidationProvider } from 'vee-validate'
 import './validator'
-import 'element-ui/lib/theme-chalk/index.css'
+
+// Pinia
+import { createPinia, PiniaVuePlugin } from 'pinia'
+
+// Tailwind CSS
 import './index.css'
 
-Vue.component('ValidationProvider', ValidationProvider)
 Vue.use(ElementUI)
+Vue.use(PiniaVuePlugin)
+Vue.component('ValidationProvider', ValidationProvider)
 Vue.config.productionTip = false
+
+const pinia = createPinia()
 
 new Vue({
   router,
-  store,
+  pinia,
   render: h => h(App)
 }).$mount('#app')

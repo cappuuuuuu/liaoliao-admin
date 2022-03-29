@@ -1,15 +1,12 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { defineStore } from 'pinia'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
+// useStore could be anything like useUser, useCart
+// the first argument is a unique id of the store across your application
+export const useStore = defineStore('main', {
+  // other options...
+  state: () => {
+    return {
+      // all these properties will have their type inferred automatically
+    }
   }
 })
