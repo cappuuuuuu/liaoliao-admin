@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .login-page {
   @apply w-screen h-screen flex justify-center items-center;
 
