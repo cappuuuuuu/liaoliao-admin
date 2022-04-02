@@ -42,6 +42,6 @@ export default {
 }
 
 .brand-name {
-  @apply text-main-color dark:text-dark-main-color mx-[32px];
+  @apply font-bold text-main-color dark:text-dark-main-color mx-[32px];
 }
 </style>
