@@ -1,6 +1,7 @@
 <template lang="pug">
 .manage-page
-  Header
+  .manage-center
+    Header
 </template>
 
 <script>
@@ -15,6 +16,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .manage-page {
-  @apply bg-app-container dark:bg-dark-app-container w-screen h-screen transition;
+  @apply bg-app-container dark:bg-dark-app-container h-screen mx-auto transition;
+}
+
+.manage-center {
+  @apply h-full max-w-[1800px] mx-auto;
 }
 </style>
