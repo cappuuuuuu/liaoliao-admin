@@ -1,5 +1,5 @@
 <template lang="pug">
-  button
+  .toggle-theme-btn
     img.theme-icon(
       @click="toggleTheme"
       :src="require(`@/assets/${theme}-mode.svg`)"

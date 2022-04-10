@@ -5,24 +5,61 @@
     .brand-name {{ constants.BRAND_NAME }}
   .right-header
     ToggleThemeButton
+    Dropdown(
+      :name="PersonalInfo.name"
+    )
+      template(#content)
+        DropdownContentItem(
+          v-for="item in PersonalInfo.items"
+        )
+          img.dropdown-icon(:src="require(`@/assets/${item.icon}-${reverseTheme}.svg`)")
+          .dropdown-name {{ item.name }}
 </template>
 
 <script>
+import { mapState } from 'pinia'
+import { useThemeStore } from '@/stores/theme'
 import COMMON_CONSTANTS from '@/constants/common'
 import ToggleThemeButton from '@/components/ToggleThemeButton'
 import HamburgerButton from '@/components/HamburgerButton'
+import Dropdown from '@/components/Dropdown'
+import DropdownContentItem from '@/components/DropdownContentItem'
 
 export default {
   name: 'Header',
   components: {
     ToggleThemeButton,
-    HamburgerButton
+    HamburgerButton,
+    Dropdown,
+    DropdownContentItem
   },
   data () {
     return {
+      PersonalInfo: {
+        name: 'Account',
+        items: [
+          {
+            name: 'User Name',
+            icon: 'user'
+          },
+          {
+            name: 'Signout',
+            icon: 'signout'
+          }
+        ]
+      },
       constants: {
-        BRAND_NAME: COMMON_CONSTANTS.brand.NAME
+        BRAND_NAME: COMMON_CONSTANTS.brand.NAME,
+        THEME_CONSTANT: COMMON_CONSTANTS.theme
       }
+    }
+  },
+  computed: {
+    ...mapState(useThemeStore, ['theme']),
+    reverseTheme () {
+      return this.theme === this.constants.THEME_CONSTANT.DARK
+        ? this.constants.THEME_CONSTANT.LIGHT
+        : this.constants.THEME_CONSTANT.DARK
     }
   }
 }
@@ -30,7 +67,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  @apply flex justify-between items-center px-[16px] py-[24px];
+  @apply flex justify-between items-center py-[16px] px-[24px];
 }
 
 .left-header {
@@ -44,4 +81,12 @@ export default {
 .brand-name {
   @apply font-bold text-main-color dark:text-dark-main-color mx-[32px];
 }
+
+.toggle-theme-btn {
+  @apply mr-[18px] p-[6px] cursor-pointer;
+}
+.dropdown-icon {
+  @apply h-[15px] mr-[14px];
+}
+
 </style>
