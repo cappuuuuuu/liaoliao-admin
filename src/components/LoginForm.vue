@@ -87,7 +87,6 @@ export default {
 .sign-in-btn {
   @apply text-white h-[46px] flex items-center justify-center rounded-lg shadow-lg
   cursor-pointer bg-primary hover:bg-dark-primary transition;
-
 }
 
 </style>
