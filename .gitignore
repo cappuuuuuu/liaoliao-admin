@@ -1,7 +1,9 @@
+# MacOS File
 .DS_Store
+
+#dependencies
 node_modules
 /dist
-
 
 # local env files
 .env
