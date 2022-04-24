@@ -50,9 +50,9 @@ export default {
   @apply
     inline-flex items-center
     pl-6 pr-5 py-2
-    font-semibold text-white hover:text-white
+    font-semibold text-white hover:text-white text-[18px]
     rounded-lg
-    bg-button-bg dark:bg-dark-button-bg
+    bg-button-bg dark:bg-dark-link-color-hover
     transition
     duration-300;
 
@@ -67,7 +67,7 @@ export default {
   @apply
     absolute right-0 z-[75]
     overflow-hidden
-    w-52
+    w-48
     mt-3
     text-left
     transform origin-top-right

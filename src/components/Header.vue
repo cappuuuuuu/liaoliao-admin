@@ -5,6 +5,7 @@
     .brand-name {{ constants.BRAND_NAME }}
   .right-header
     ToggleThemeButton
+    .vertical-divide-line
     Dropdown
       template(#header)
         img.dropdown-icon(:src="require(`@/assets/user-light.svg`)")
@@ -80,10 +81,18 @@ export default {
 }
 
 .toggle-theme-btn {
-  @apply mr-[18px] p-[6px] cursor-pointer;
+  @apply cursor-pointer;
 }
 .dropdown-icon {
-  @apply h-[15px] mr-[14px];
+  @apply h-[18px] mr-[14px];
+}
+.vertical-divide-line {
+  @apply
+    w-[2px]
+    ml-[20px]
+    mr-[22px]
+    h-[30px]
+    bg-[#ddd];
 }
 
 </style>

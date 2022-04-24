@@ -19,11 +19,13 @@ export default {
     px-6
     py-3
     text-left font-bold
-    text-[14px]
+    text-[16px]
     leading-tight
     cursor-pointer
     text-main-color
-    dark:text-dark-main-color;
+    hover:bg-message-box-hover
+    dark:text-dark-main-color
+    dark:hover:bg-dark-link-color-hover;
 }
 
 .divide-line {
