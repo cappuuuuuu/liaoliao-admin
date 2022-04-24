@@ -7,3 +7,10 @@ export function loginAuth ({ body }) {
     data: body
   })
 }
+
+export function getOperatorAccount () {
+  return xhr({
+    method: 'get',
+    url: '/operator'
+  })
+}

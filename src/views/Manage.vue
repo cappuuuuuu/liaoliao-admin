@@ -5,12 +5,25 @@
 </template>
 
 <script>
+import { mapActions } from 'pinia'
 import Header from '@/components/Header'
+import { getOperatorAccount } from '@/services/authServices'
+import { useOperatorStore } from '@/stores/operator'
 
 export default {
   name: 'Manage',
   components: {
     Header
+  },
+  created () {
+    getOperatorAccount()
+      .then(res => {
+        const OperatorAccount = res
+        this.setOperator(OperatorAccount)
+      })
+  },
+  methods: {
+    ...mapActions(useOperatorStore, ['setOperator'])
   }
 }
 </script>

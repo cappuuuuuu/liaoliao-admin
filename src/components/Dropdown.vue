@@ -3,7 +3,11 @@
     button.dropdown-menu-btn(
       @click="isOpen = true"
       :class="{ active: isOpen }"
-    ) {{ name }}
+    )
+      template(v-if="$slots.header")
+        slot(name="header")
+      template(v-else)
+        .default-header-name {{ defaultHeaderName }}
       img.arrow-icon(:src="require(`@/assets/arrow-down-light.svg`)")
     .fix-mask(
       v-if="isOpen"
@@ -25,15 +29,10 @@
 
 export default {
   name: 'Dropdown',
-  props: {
-    name: {
-      type: String,
-      default: 'Default Name'
-    }
-  },
   data () {
     return {
-      isOpen: false
+      isOpen: false,
+      defaultHeaderName: 'Default'
     }
   }
 }

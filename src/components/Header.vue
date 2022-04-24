@@ -5,12 +5,14 @@
     .brand-name {{ constants.BRAND_NAME }}
   .right-header
     ToggleThemeButton
-    Dropdown(
-      :name="PersonalInfo.name"
-    )
+    Dropdown
+      template(#header)
+        img.dropdown-icon(:src="require(`@/assets/user-light.svg`)")
+        .operator-name {{ operator.account }}
       template(#content)
-        DropdownContentItem(
-          v-for="item in PersonalInfo.items"
+        DropdownContentItem(s
+          v-for="item in dropdownList"
+          :key="item.name"
         )
           img.dropdown-icon(:src="require(`@/assets/${item.icon}-${reverseTheme}.svg`)")
           .dropdown-name {{ item.name }}
@@ -19,6 +21,7 @@
 <script>
 import { mapState } from 'pinia'
 import { useThemeStore } from '@/stores/theme'
+import { useOperatorStore } from '@/stores/operator'
 import COMMON_CONSTANTS from '@/constants/common'
 import ToggleThemeButton from '@/components/ToggleThemeButton'
 import HamburgerButton from '@/components/HamburgerButton'
@@ -35,19 +38,12 @@ export default {
   },
   data () {
     return {
-      PersonalInfo: {
-        name: 'Account',
-        items: [
-          {
-            name: 'User Name',
-            icon: 'user'
-          },
-          {
-            name: 'Signout',
-            icon: 'signout'
-          }
-        ]
-      },
+      dropdownList: [
+        {
+          name: 'Signout',
+          icon: 'signout'
+        }
+      ],
       constants: {
         BRAND_NAME: COMMON_CONSTANTS.brand.NAME,
         THEME_CONSTANT: COMMON_CONSTANTS.theme
@@ -56,6 +52,7 @@ export default {
   },
   computed: {
     ...mapState(useThemeStore, ['theme']),
+    ...mapState(useOperatorStore, ['operator']),
     reverseTheme () {
       return this.theme === this.constants.THEME_CONSTANT.DARK
         ? this.constants.THEME_CONSTANT.LIGHT

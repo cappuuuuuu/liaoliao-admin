@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapActions } from 'pinia'
+import { useOperatorStore } from '@/stores/operator'
 import { loginAuth } from '@/services/authServices'
 import LoginForm from '@/components/LoginForm.vue'
 
@@ -20,15 +22,21 @@ export default {
     LoginForm
   },
   methods: {
-    loginHandler (personalInfo) {
-      const { account, password } = personalInfo
+    ...mapActions(useOperatorStore, ['setOperator']),
+    loginHandler (operatorInfo) {
+      const { account, password } = operatorInfo
       const body = {
         account,
         password
       }
 
       loginAuth({ body })
-        .then(() => this.$router.push({ name: 'manage' }))
+        .then((res) => {
+          const OperatorAccount = res
+          this.setOperator(OperatorAccount)
+
+          this.$router.push({ name: 'manage' })
+        })
         .catch(err => console.log(err))
     }
   }
