@@ -7,7 +7,7 @@ export default Object.freeze({
   },
   notification: {
     error: {
-      RELOGIN: 'Verify failed.\nPlease login to our system again'
+      RELOGIN: 'Verify failed.<br>Please login to our system again.'
     }
   }
 })

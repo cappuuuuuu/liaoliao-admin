@@ -31,6 +31,7 @@ export default function xhr ({
         // Because token is expired, router will redirect to login page
         if (isTokenExpired) {
           Notification.error({
+            dangerouslyUseHTMLString: true,
             message: CONSTANT_MESSAGE.notification.error.RELOGIN
           })
 
