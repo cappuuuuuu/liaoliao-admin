@@ -1,9 +1,9 @@
 <template lang="pug">
-  .toggle-theme-btn
-    img.theme-icon(
-      @click="toggleTheme"
-      :src="require(`@/assets/${theme}-mode.svg`)"
-    )
+.toggle-theme-btn
+  img.theme-icon(
+    @click="toggleTheme"
+    :src="require(`@/assets/${theme}-mode.svg`)"
+  )
 </template>
 
 <script>
