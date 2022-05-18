@@ -26,21 +26,22 @@ export default function xhr ({
       })
       .catch(async err => {
         const errorMessage = err.response.data?.message ?? CONSTANT_MESSAGE.api.error.UNKNOWN
-        const isTokenExpired = errorMessage === CONSTANT_MESSAGE.api.error.TOKEN_EXPIRED
+        const errorStatus = err.response.status
 
-        // Because token is expired, router will redirect to login page
-        if (isTokenExpired) {
-          Notification.error({
-            dangerouslyUseHTMLString: true,
-            message: CONSTANT_MESSAGE.notification.error.RELOGIN
-          })
-
-          await timeout(1000)
-          router.push('/')
-        } else {
-          Notification.error({
-            message: errorMessage
-          })
+        switch (errorStatus) {
+          // 401: access_token is not valid, router will redirect to login page
+          case 401:
+            Notification.error({
+              dangerouslyUseHTMLString: true,
+              message: CONSTANT_MESSAGE.notification.error.RELOGIN
+            })
+            await timeout(1000)
+            router.push('/')
+            break
+          default:
+            Notification.error({
+              message: errorMessage
+            })
         }
 
         reject(err)
