@@ -14,3 +14,11 @@ export function getOperatorAccount () {
     url: '/operator'
   })
 }
+
+export function operatorLogout ({ body }) {
+  return xhr({
+    method: 'post',
+    url: '/logout',
+    data: body
+  })
+}
