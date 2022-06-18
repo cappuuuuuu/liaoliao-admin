@@ -1,24 +1,13 @@
-# liaoliao-admin
+# liaoliao-admin (ㄌㄌ 後台)
+尚在開發中 (ฅ』ω』ฅ)
 
-## Project setup
-```
-yarn install
-```
+可以先去前台玩玩 XD [ㄌㄌ前台](https://github.com/cappuuuuuu/liaoliao)
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+# 後台預計開發功能 
+* 上架貼圖 
+* 管理訊息
 
-### Compiles and minifies for production
-```
-yarn build
-```
 
-### Lints and fixes files
-```
-yarn lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
