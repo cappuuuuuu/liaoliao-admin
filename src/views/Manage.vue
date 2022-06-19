@@ -6,7 +6,7 @@
 
 <script>
 import { mapActions } from 'pinia'
-import Header from '@/components/Header'
+import Header from '@/layouts/Header'
 import { getOperatorAccount } from '@/services/authServices'
 import { useOperatorStore } from '@/stores/operator'
 

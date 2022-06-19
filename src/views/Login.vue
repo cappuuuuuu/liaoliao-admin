@@ -14,7 +14,7 @@
 import { mapActions } from 'pinia'
 import { useOperatorStore } from '@/stores/operator'
 import { loginAuth } from '@/services/authServices'
-import LoginForm from '@/components/Form/login'
+import LoginForm from '@/layouts/LoginForm'
 
 export default {
   name: 'Login',
