@@ -26,10 +26,10 @@ import { useThemeStore } from '@/stores/theme'
 import { useOperatorStore } from '@/stores/operator'
 import COMMON_CONSTANTS from '@/constants/common'
 import { operatorLogout } from '@/services/authServices'
-import ToggleThemeButton from '@/components/ToggleThemeButton'
-import HamburgerButton from '@/components/HamburgerButton'
+import ToggleThemeButton from '@/components/Button/toggleTheme'
+import HamburgerButton from '@/components/Button/hamburger'
 import Dropdown from '@/components/Dropdown'
-import DropdownContentItem from '@/components/DropdownContentItem'
+import DropdownContentItem from '@/components/Dropdown/contentItem'
 
 export default {
   name: 'Header',
