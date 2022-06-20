@@ -2,18 +2,24 @@
 .manage-page
   .manage-center
     Header
+    .manage-content
+      Sidebar
+      transition(name="view" appear)
+        router-view
 </template>
 
 <script>
 import { mapActions } from 'pinia'
-import Header from '@/layouts/Header'
 import { getOperatorAccount } from '@/services/authServices'
 import { useOperatorStore } from '@/stores/operator'
+import Header from '@/layouts/Header'
+import Sidebar from '@/layouts/Sidebar'
 
 export default {
   name: 'Manage',
   components: {
-    Header
+    Header,
+    Sidebar
   },
   created () {
     getOperatorAccount()
@@ -34,5 +40,9 @@ export default {
 
 .manage-center {
   @apply h-full max-w-[1800px] mx-auto;
+}
+
+.manage-content {
+  @apply flex pr-[24px] pt-[16px] pb-[24px];
 }
 </style>

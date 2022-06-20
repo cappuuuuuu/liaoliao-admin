@@ -55,13 +55,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(useThemeStore, ['theme']),
-    ...mapState(useOperatorStore, ['operator']),
-    reverseTheme () {
-      return this.theme === this.constants.THEME_CONSTANT.DARK
-        ? this.constants.THEME_CONSTANT.LIGHT
-        : this.constants.THEME_CONSTANT.DARK
-    }
+    ...mapState(useThemeStore, ['theme', 'reverseTheme']),
+    ...mapState(useOperatorStore, ['operator'])
   },
   methods: {
     dropdownItemClickHandler (item) {
