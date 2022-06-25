@@ -1,8 +1,8 @@
 <template lang="pug">
-  .dropdown-item-wrap
-    .dropdown-content-item
-      slot
-    .divide-line
+.dropdown-item-wrap
+  .dropdown-content-item
+    slot
+  .divide-line
 </template>
 <script>
 

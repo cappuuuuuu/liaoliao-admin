@@ -3,7 +3,7 @@ import xhr from './xhr'
 export function loginAuth ({ body }) {
   return xhr({
     method: 'post',
-    url: '/login',
+    url: 'admin/login',
     data: body
   })
 }
@@ -11,6 +11,14 @@ export function loginAuth ({ body }) {
 export function getOperatorAccount () {
   return xhr({
     method: 'get',
-    url: '/operator'
+    url: 'admin/operator'
+  })
+}
+
+export function operatorLogout ({ body }) {
+  return xhr({
+    method: 'post',
+    url: 'admin/logout',
+    data: body
   })
 }

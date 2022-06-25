@@ -10,6 +10,11 @@ export const useThemeStore = defineStore('theme', {
   getters: {
     isDarkTheme () {
       return this.theme === COMMON_CONSTANTS.theme.DARK
+    },
+    reverseTheme () {
+      return this.theme === COMMON_CONSTANTS.theme.DARK
+        ? COMMON_CONSTANTS.theme.LIGHT
+        : COMMON_CONSTANTS.theme.DARK
     }
   },
   actions: {

@@ -11,9 +11,10 @@
         img.dropdown-icon(:src="require(`@/assets/user-light.svg`)")
         .operator-name {{ operator.account }}
       template(#content)
-        DropdownContentItem(s
+        DropdownContentItem(
           v-for="item in dropdownList"
           :key="item.name"
+          @click.native="dropdownItemClickHandler(item)"
         )
           img.dropdown-icon(:src="require(`@/assets/${item.icon}-${reverseTheme}.svg`)")
           .dropdown-name {{ item.name }}
@@ -24,10 +25,11 @@ import { mapState } from 'pinia'
 import { useThemeStore } from '@/stores/theme'
 import { useOperatorStore } from '@/stores/operator'
 import COMMON_CONSTANTS from '@/constants/common'
-import ToggleThemeButton from '@/components/ToggleThemeButton'
-import HamburgerButton from '@/components/HamburgerButton'
+import { operatorLogout } from '@/services/authServices'
+import ToggleThemeButton from '@/components/Button/toggleTheme'
+import HamburgerButton from '@/components/Button/hamburger'
 import Dropdown from '@/components/Dropdown'
-import DropdownContentItem from '@/components/DropdownContentItem'
+import DropdownContentItem from '@/components/Dropdown/contentItem'
 
 export default {
   name: 'Header',
@@ -42,7 +44,8 @@ export default {
       dropdownList: [
         {
           name: 'Signout',
-          icon: 'signout'
+          icon: 'signout',
+          action: 'logout'
         }
       ],
       constants: {
@@ -52,12 +55,26 @@ export default {
     }
   },
   computed: {
-    ...mapState(useThemeStore, ['theme']),
-    ...mapState(useOperatorStore, ['operator']),
-    reverseTheme () {
-      return this.theme === this.constants.THEME_CONSTANT.DARK
-        ? this.constants.THEME_CONSTANT.LIGHT
-        : this.constants.THEME_CONSTANT.DARK
+    ...mapState(useThemeStore, ['theme', 'reverseTheme']),
+    ...mapState(useOperatorStore, ['operator'])
+  },
+  methods: {
+    dropdownItemClickHandler (item) {
+      switch (item.action) {
+        case 'logout':
+          this.logoutHandler()
+          break
+      }
+    },
+    logoutHandler () {
+      const body = {
+        _id: this.operator._id
+      }
+
+      operatorLogout({ body })
+        .then(_ => {
+          this.$router.push('/')
+        })
     }
   }
 }

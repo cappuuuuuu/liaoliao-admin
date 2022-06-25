@@ -13,7 +13,19 @@ const routes = [
   {
     path: '/manage',
     name: 'manage',
-    component: () => import('@/views/Manage.vue')
+    component: () => import('@/views/Manage.vue'),
+    children: [
+      {
+        path: 'message',
+        name: 'messageManage',
+        component: () => import('@/layouts/Manage/message.vue')
+      },
+      {
+        path: 'sticker',
+        name: 'stickerManage',
+        component: () => import('@/layouts/Manage/sticker.vue')
+      }
+    ]
   }
 ]
 
