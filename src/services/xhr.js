@@ -25,7 +25,7 @@ export default function xhr ({
 }) {
   const options = {
     method,
-    url: SERVER_ORIGIN + 'admin' + url,
+    url: SERVER_ORIGIN + url,
     data,
     params,
     withCredentials: true
