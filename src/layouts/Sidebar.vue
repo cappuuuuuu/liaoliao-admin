@@ -4,6 +4,7 @@
     v-for="item in linkList"
     :key="item.icon"
     :to="{ name : item.routeName }"
+    :class="{ 'active': $route.name === item.routeName }"
   )
     img.sidebar-link-icon(:src="require(`@/assets/${item.icon}.svg`)")
 </template>
@@ -35,12 +36,19 @@ export default {
 }
 
 .sidebar-link {
-  @apply flex items-center justify-center w-[48px] h-[48px] my-[16px] rounded-[50%] transition
+  @apply flex items-center justify-center w-[48px] h-[48px] my-[16px] rounded-[10px] transition
     hover:bg-link-color-hover
   dark:hover:bg-dark-link-color-hover;
 
-  &:hover > .sidebar-link-icon {
+  &:hover,
+  &.active {
+    .sidebar-link-icon {
     filter: invert(1);
+    }
+  }
+
+  &.active {
+    @apply bg-link-color-hover dark:bg-dark-link-color-hover;
   }
 }
 .sidebar-link-icon {
@@ -50,5 +58,4 @@ export default {
     filter: invert(1);
   }
 }
-
 </style>
