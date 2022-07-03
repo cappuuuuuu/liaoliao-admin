@@ -1,4 +1,4 @@
-import { Notification } from 'element-ui'
+import { notify } from '@/library/vuesax'
 import router from '@/router'
 import axios from 'axios'
 import { timeout } from '@/utils'
@@ -8,10 +8,8 @@ const { VUE_APP_SERVER_ORIGIN: SERVER_ORIGIN } = process.env
 const errorHandle = {
   // 401: access_token is not valid, router will redirect to login page
   401: async function () {
-    Notification.error({
-      dangerouslyUseHTMLString: true,
-      message: CONSTANT_MESSAGE.notification.error.RELOGIN
-    })
+    notify({ text: CONSTANT_MESSAGE.notification.error.RELOGIN, color: 'danger' })
+
     await timeout(1000)
     router.push('/')
   }
@@ -42,7 +40,7 @@ export default function xhr ({
 
         errorHandle[errorStatus]
           ? errorHandle[errorStatus]()
-          : Notification.error({ message: errorMessage })
+          : notify({ text: errorMessage, color: 'danger' })
 
         reject(err)
       })

@@ -6,9 +6,11 @@
 <script>
 import { mapActions } from 'pinia'
 import { useThemeStore } from '@/stores/theme'
+import { initialVueSax } from '@/library/vuesax'
 
 export default {
   created () {
+    initialVueSax(this.$vs)
     this.initializeTheme()
   },
   methods: {
