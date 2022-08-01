@@ -2,10 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
-
 // Vee-Validate
 import { ValidationProvider } from 'vee-validate'
 import './validator'
+import '@/filters'
 
 // Pinia
 import { createPinia, PiniaVuePlugin } from 'pinia'
@@ -17,6 +17,9 @@ import 'boxicons/css/boxicons.min.css'// Vuesax Icon use boxicons
 
 // Tailwind CSS
 import './index.css'
+
+// Global SCSS
+import './assets/style/all.scss'
 
 Vue.use(PiniaVuePlugin)
 Vue.use(Vuesax)
