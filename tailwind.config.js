@@ -1,5 +1,6 @@
 module.exports = {
   mode: 'jit',
+  important: true,
   purge: [
     './public/**/*.html',
     './src/**/*.{js,jsx,ts,tsx,vue}'
@@ -16,6 +17,7 @@ module.exports = {
         'dark-primary': '#4b779d',
         input: 'rgb(246, 246, 246)',
         'focus-input': 'rgb(236, 237, 240)',
+        'dialog-mask': 'rgba(0, 0, 0, .6)',
 
         // Light Theme
         'app-container': '#f3f6fd',
@@ -35,6 +37,11 @@ module.exports = {
         'search-area-bg': '#fff',
         star: '#1ff1c2e',
         'message-btn': '#fff',
+        scrollbar: '#e6eaea',
+        'scrollbar-thumb': '#5081ad',
+        'message-wrapper': 'rgb(244, 247, 248)',
+        'avatar-wrapper': '#a2a2a51c',
+        'dialog-bg': '#fff',
 
         // Dark Theme
         dark: {
@@ -54,7 +61,10 @@ module.exports = {
           'more-list-bg': '#2f3142',
           'more-list-bg-hover': 'rgba(195, 207, 244, 0.1)',
           'more-list-shadow': 'rgba(195, 207, 244, 0.1)',
-          'message-btn': 'rgba(195, 207, 244, 0.1)'
+          'message-btn': 'rgba(195, 207, 244, 0.1)',
+          'table-td-hover': 'rgba(66, 73, 98, .2)',
+          'message-wrapper': '#fff',
+          'dialog-bg': '#1f2f3c'
         }
       }
     }

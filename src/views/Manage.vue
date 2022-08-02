@@ -48,6 +48,6 @@ export default {
 }
 
 .manage-section {
-  @apply w-full p-[32px] rounded-[32px] bg-projects-section dark:bg-dark-projects-section ;
+  @apply relative w-full p-[32px] rounded-[32px] bg-projects-section dark:bg-dark-projects-section ;
 }
 </style>

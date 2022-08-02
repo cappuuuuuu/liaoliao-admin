@@ -1,0 +1,59 @@
+.vs-table__th {
+  @apply 
+  bg-app-container
+  dark:bg-dark-app-container
+  text-main-color
+  dark:text-dark-main-color;
+}
+
+.vs-table__tr:hover {
+  .vs-table__td {
+    @apply
+    bg-app-container
+    dark:bg-dark-table-td-hover;
+  }
+}
+
+.vs-table__th {
+  @apply
+    text-[14px]
+}
+
+.vs-table__thead .vs-table__th:first-child {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.vs-table__thead .vs-table__th:last-child {
+  border-radius: 0px 10px 10px 0px;
+}
+
+.vs-table__tr:first-of-type .vs-table__td:first-child {
+  border-radius: 15px 0px 0px 15px;
+}
+
+.vs-table__tr:first-of-type .vs-table__td:last-child {
+  border-radius: 0px 15px 15px 0px;
+}
+
+.vs-table__td {
+  @apply
+    py-[14px]
+  text-main-color
+  dark:text-dark-main-color;
+}
+
+.vs-table__footer {
+  @apply
+  dark:bg-dark-app-container;
+}
+
+.vs-pagination__button {
+  @apply
+  dark:bg-dark-app-container
+  dark:text-dark-link-color
+}
+
+.vs-pagination__active {
+  @apply 
+  dark:bg-dark-link-color-active-bg;
+}

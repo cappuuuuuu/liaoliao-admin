@@ -32,27 +32,45 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar {
-  @apply flex flex-col items-center px-[16px] py-[40px];
+  @apply
+    flex
+    flex-col
+    items-center
+    px-[16px]
+    py-[40px];
 }
 
 .sidebar-link {
-  @apply flex items-center justify-center w-[48px] h-[48px] my-[16px] rounded-[10px] transition
-    hover:bg-link-color-hover
-  dark:hover:bg-dark-link-color-hover;
+  @apply
+    flex
+    items-center
+    justify-center
+    w-[48px]
+    h-[48px]
+    my-[16px]
+    rounded-[10px]
+    transition
+    hover:bg-link-color-active-bg
+    dark:hover:bg-dark-link-color-hover;
 
   &:hover,
   &.active {
     .sidebar-link-icon {
-    filter: invert(1);
+      filter: invert(1);
     }
   }
 
   &.active {
-    @apply bg-link-color-hover dark:bg-dark-link-color-hover;
+    @apply
+      bg-link-color-active-bg
+      dark:bg-dark-link-color-hover;
   }
 }
 .sidebar-link-icon {
-  @apply w-[24px] h-[24px] transition;
+  @apply
+    w-[24px]
+    h-[24px]
+    transition;
 
   .dark & {
     filter: invert(1);

@@ -20,12 +20,17 @@
         v-model="personalInfo.password"
         name="password"
       )
-  .sign-in-btn(
+  vs-button.sign-in-btn(
     @click="$emit('login-handler', personalInfo)"
-  ) Sign in
+    :color="themeColor.primary"
+    flat
+   ) Sign In
   </template>
 
 <script>
+import { mapState } from 'pinia'
+import { useTailwindStyleStore } from '@/stores/tailwind'
+
 export default {
   name: 'LoginForm',
   data () {
@@ -35,6 +40,9 @@ export default {
         password: ''
       }
     }
+  },
+  computed: {
+    ...mapState(useTailwindStyleStore, ['themeColor'])
   }
 }
 </script>
