@@ -25,8 +25,7 @@ export default {
   created () {
     getOperatorAccount()
       .then(res => {
-        const OperatorAccount = res
-        this.setOperator(OperatorAccount)
+        this.setOperator(res.data)
       })
   },
   methods: {

@@ -65,8 +65,8 @@ export default {
   methods: {
     ...mapActions(useDialogStore, ['openDialog']),
     async getMessageAction () {
-      const { data, count } = await getMessage(this.pagination)
-      this.messageList = data
+      const { data: { records, count } } = await getMessage(this.pagination)
+      this.messageList = records
       this.messageTotalCount = count
     }
   }
