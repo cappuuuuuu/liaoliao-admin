@@ -6,6 +6,9 @@ export default Object.freeze({
     }
   },
   notification: {
+    success: {
+      DELETE_MESSAGE: 'Message deleted successfully'
+    },
     error: {
       RELOGIN: 'Verify failed.<br>Please login to our system again.'
     }

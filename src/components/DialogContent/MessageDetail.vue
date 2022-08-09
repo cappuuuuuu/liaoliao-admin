@@ -5,19 +5,19 @@ DialogLayout
   template(#content)
     .avatar-wrapper
       .avatar-img-wrapper
-        img.avatar-img(:src="require(`@/assets/images/avatar/avatar-${Number(message.avatar)+1}.png`)" alt="")
+        img.avatar-img(:src="require(`@/assets/images/avatar/avatar-${message.avatar}.png`)" alt="")
       .avatar-name {{ message.name }}
     .message-wrapper
       span(v-if="message.type === 'text'") {{ message.content }}
       img.sticker-img(v-else :src="message.content")
-  template(#bottom)
+  template(#footer)
     .message-time {{ message.time | dateFormat }}
 </template>
 
 <script>
 import { mapState } from 'pinia'
 import { useDialogStore } from '@/stores/dialog'
-import DialogLayout from './layout.vue'
+import DialogLayout from '@/components/Dialog/layout'
 
 export default {
   name: 'MessageDetail',

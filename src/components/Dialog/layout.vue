@@ -10,8 +10,9 @@ vs-dialog(
       slot(name="header")
   .content
     slot(name="content")
-  .bottom
-    slot(name="bottom")
+  template(#footer)
+    .bottom
+      slot(name="footer")
 </template>
 
 <script>
@@ -47,7 +48,6 @@ export default {
 
   .vs-dialog__content {
     @apply
-      pb-0
       px-[30px];
   }
 

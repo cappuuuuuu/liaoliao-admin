@@ -25,8 +25,7 @@ export default {
   created () {
     getOperatorAccount()
       .then(res => {
-        const OperatorAccount = res
-        this.setOperator(OperatorAccount)
+        this.setOperator(res.data)
       })
   },
   methods: {
@@ -48,6 +47,6 @@ export default {
 }
 
 .manage-section {
-  @apply relative w-full p-[32px] rounded-[32px] bg-projects-section dark:bg-dark-projects-section ;
+  @apply relative w-full py-[20px] px-[30px] rounded-[32px] bg-projects-section dark:bg-dark-projects-section ;
 }
 </style>
