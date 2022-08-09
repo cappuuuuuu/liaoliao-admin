@@ -3,7 +3,7 @@ DialogLayout
   template(#header) Delete Message
   template(#content)
     span.content
-      template(v-if="selectedList.length") Are you sure you want to delete the selectedList messages ?
+      template(v-if="selectedList.length") Are you sure you want to delete the selected messages ?
       template(v-else) Please tick the message you want to delete.
   template(#footer)
     ButtonGroup(v-if="selectedList.length")
