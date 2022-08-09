@@ -7,3 +7,11 @@ export function getMessage (params) {
     params
   })
 }
+
+export function deleteMessage ({ body }) {
+  return xhr({
+    method: 'delete',
+    url: 'message',
+    data: body
+  })
+}
