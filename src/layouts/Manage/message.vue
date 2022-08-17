@@ -120,7 +120,8 @@ export default {
       }
     },
     async deleteMessageProcedure () {
-      await deleteMessage({ body: { _id: this.checkBoxOption.selected } })
+      const ids = this.checkBoxOption.selected.map(item => item._id)
+      await deleteMessage({ body: { ids } })
 
       notify({
         text: MESSAGE.notification.success.DELETE_MESSAGE,
