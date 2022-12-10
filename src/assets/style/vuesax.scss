@@ -57,3 +57,17 @@
   @apply 
   dark:bg-dark-link-color-active-bg;
 }
+
+.vs-button {
+  @apply
+    w-[40px]
+    h-[40px]
+    bg-link-color-active-bg
+    dark:bg-dark-link-color-hover
+    shadow-none;
+
+  .bx {
+    @apply
+      text-[24px]
+  }
+}

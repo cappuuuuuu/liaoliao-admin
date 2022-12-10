@@ -1,13 +1,14 @@
 <template lang="pug">
-.message-manage(v-if="messageList.length")
+.message-manage
   .message-manage-title Messages
-    vs-button.delete-btn(icon @click="clickDeleteButton")
+    vs-button(icon @click="clickDeleteButton")
       i.bx.bx-trash
+  SearchGroup.search-block(:data="searchData" @search="searchMessage")
   .center
     vs-table
       template(#thead)
         vs-tr
-          vs-th
+          vs-th(v-if="messageList.length")
             vs-checkbox(
               color="danger"
               v-model="checkBoxOption.isAllCheck"
@@ -52,9 +53,13 @@ import { useDialogStore } from '@/stores/dialog'
 import { useTailwindStyleStore } from '@/stores/tailwind'
 import { getMessage, deleteMessage } from '@/services/messageServices'
 import MESSAGE from '@/constants/message'
+import SearchGroup from '@/components/SearchGroup'
 
 export default {
   name: 'MessageManage',
+  components: {
+    SearchGroup
+  },
   data () {
     return {
       messageTotalCount: 0,
@@ -66,7 +71,36 @@ export default {
       pagination: {
         page: 1,
         count: 10
-      }
+      },
+      searchData: [
+        {
+          name: 'name',
+          label: 'Name',
+          placeholder: 'Name',
+          inputType: 'text',
+          value: ''
+        },
+        {
+          name: 'type',
+          label: 'Message Type',
+          placeholder: 'All',
+          inputType: 'select',
+          value: '',
+          options: ['text', 'sticker']
+        },
+        {
+          name: 'startDate',
+          label: 'Date Start',
+          inputType: 'date',
+          value: ''
+        },
+        {
+          name: 'endDate',
+          label: 'Date End',
+          inputType: 'date',
+          value: ''
+        }
+      ]
     }
   },
   async created () {
@@ -96,7 +130,7 @@ export default {
     async getMessageAction () {
       this.resetSelectedMessage()
 
-      const { data: { records, count } } = await getMessage(this.pagination)
+      const { data: { records, count } } = await getMessage({ body: this.pagination })
       this.messageList = records
       this.messageTotalCount = count
     },
@@ -139,6 +173,35 @@ export default {
         info: this.checkBoxOption.selected,
         confirmFunc: this.deleteMessageProcedure
       })
+    },
+    handleFormValue ({ value, inputType }) {
+      if (!value) return null
+      return inputType === 'date' ? new Date(value).toISOString() : value
+    },
+    async searchMessage (formList) {
+      this.resetSelectedMessage()
+
+      const queries = formList
+        .map(node => {
+          return {
+            ...node,
+            value: this.handleFormValue(node)
+          }
+        })
+        .reduce((acc, cur) => {
+          acc[cur.name] = cur.value
+          return acc
+        }, {})
+
+      const body = {
+        ...this.pagination,
+        ...queries
+      }
+      const { data: { records, count } } = await getMessage({ body })
+      console.log('records', records)
+      console.log('count', count)
+      this.messageList = records
+      this.messageTotalCount = count
     }
   }
 }
@@ -150,26 +213,12 @@ export default {
     flex
     justify-between
     items-center
-    mb-[15px]
+    mb-[45px]
     text-[18px]
     leading-[32px]
     font-bold
     text-main-color
     dark:text-dark-main-color;
-}
-
-.delete-btn {
-  @apply
-    w-[40px]
-    h-[40px]
-    bg-link-color-active-bg
-    dark:bg-dark-link-color-hover
-    shadow-none;
-
-  .bx {
-    @apply
-      text-[24px]
-  }
 }
 
 .vs-table-content {
@@ -215,6 +264,11 @@ export default {
     left-0
     right-0
     mx-auto;
+}
+
+.search-block {
+  @apply
+    mb-[35px];
 }
 </style>
 <style lang="scss">

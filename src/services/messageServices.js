@@ -1,10 +1,10 @@
 import xhr from './xhr'
 
-export function getMessage (params) {
+export function getMessage ({ body }) {
   return xhr({
-    method: 'get',
+    method: 'post',
     url: 'message',
-    params
+    data: body
   })
 }
 
